@@ -1,0 +1,87 @@
+Append List
+
+public class SinglyLinkedList {
+    Node head;
+
+    // Node class
+    static class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    // Method to append another list to this list
+    public void appendList(SinglyLinkedList list2) {
+        if (head == null) {
+            head = list2.head;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = list2.head;
+        }
+    }
+
+    // Method to add a new node at the end of the list
+    public void add(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+    }
+
+    // Method to print the linked list
+    public void printList() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        SinglyLinkedList list1 = new SinglyLinkedList();
+        list1.add(22);
+        list1.add(33);
+        list1.add(44);
+        list1.add(55);
+
+        SinglyLinkedList list2 = new SinglyLinkedList();
+        list2.add(66);
+        list2.add(77);
+        list2.add(88);
+        list2.add(99);
+
+        System.out.println("List 1 before append:");
+        list1.printList(); // Output: 22 33 44 55 
+
+        System.out.println("List 2:");
+        list2.printList(); // Output: 66 77 88 99 
+
+        list1.appendList(list2);
+
+        System.out.println("List 1 after append:");
+        list1.printList(); // Output: 22 33 44 55 66 77 88 99
+    }
+}
+
+O/p:
+
+List 1 before append:
+22 33 44 55 
+List 2:
+66 77 88 99 
+List 1 after append:
+22 33 44 55 66 77 88 99 
